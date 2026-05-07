@@ -1,0 +1,32 @@
+=====================================
+| DEVELOPMENT SERVER
+====================================
+cd G:\project2025\babylonjs\virtual-classroom-v3-5-Server\
+npm run dev:all
+
+
+=====================================
+| DEVELOPMENT CLIENT
+====================================
+cd G:\project2025\babylonjs\virtual-classroom-v3-5-CLIENT\
+npm run dev
+
+
+=====================================
+| PRODUCTION
+====================================
+# Build server
+cd virtual-classroom-v3-5-Server
+npm run build
+
+# Build client
+cd pioneer-portal-v3-client
+npm run build
+
+# Jalankan server production
+cd virtual-classroom-v3-5-Server
+npm run start:all
+
+# Jalankan client production
+cd pioneer-portal-v3-client
+npm run preview
