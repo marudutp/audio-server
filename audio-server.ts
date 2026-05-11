@@ -51,7 +51,7 @@ if (isReplit) {
 // ============================================
 const io = new Server(server, {
     cors: {
-        origin: ["https://pioneer-portal-v3.vercel.app", "http://localhost:5000"],
+        origin: ["https://campus3d-theta.vercel.app/", "http://localhost:5000"],
         methods: ["GET", "POST"],
         credentials: true
     },
@@ -76,8 +76,8 @@ const audioUsers = new Map<string, AudioUser>();
 const socketUidMap = new Map<string, string>();
 
 // Movement server connection (untuk sync posisi)
-let movementServerSocket: any = null;
-const MOVEMENT_SERVER_URL = process.env.MOVEMENT_SERVER_URL || 'http://localhost:8080';
+// let movementServerSocket: any = null;
+// const MOVEMENT_SERVER_URL = process.env.MOVEMENT_SERVER_URL || 'http://localhost:8080';
 
 // ============================================
 // HEARTBEAT CLEANUP
