@@ -1,15 +1,13 @@
 {
-  "name": "pioneer-portal-v3-server",
+  "name": "audio-server",
   "version": "3.0.0",
   "type": "module",
   "scripts": {
     "dev:movement": "tsx watch movement-server.ts",
     "dev:audio": "tsx watch audio-server.ts",
-    "dev:all": "concurrently \"npm run dev:movement\" \"npm run dev:audio\"",
     "build": "tsc",
     "start:movement": "node dist/movement-server.js",
-    "start:audio": "node dist/audio-server.js",
-    "start:all": "concurrently \"npm run start:movement\" \"npm run start:audio\""
+    "start:audio": "node dist/audio-server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
