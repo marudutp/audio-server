@@ -270,7 +270,7 @@ server.listen({
 }, () => {
     console.log("🚀 SERVER ONLINE");
     console.log("--------------------------------------------------");
-    console.log("🎧 PIONEER PORTAL V3 AUDIO SERVER ONLINE");
+    console.log("🎧 CAMPUS3D PORTAL V3 AUDIO SERVER ONLINE");
     console.log(`📡 Port: ${AUDIO_PORT}`);
     console.log(`🌍 Mode: ${isReplit ? 'REPLIT CLOUD' : 'LOCAL'}`);
     console.log("--------------------------------------------------");
