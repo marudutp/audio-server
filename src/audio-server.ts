@@ -15,10 +15,35 @@ const app = express();
 // ============================================
 // MIDDLEWARE
 // ============================================
+
+const allowedOrigins = [
+    "https://campus3d-theta.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:5000"
+];
+// app.use(cors({
+//     origin: "*",
+//     credentials: true
+// }));
 app.use(cors({
-    origin: "*",
+    origin: (origin, callback) => {
+
+        if (!origin) {
+            return callback(null, true);
+        }
+
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            console.log("❌ BLOCKED AUDIO HTTP ORIGIN:", origin);
+            callback(new Error("Not allowed by CORS"));
+        }
+
+    },
+
     credentials: true
 }));
+
 app.use(express.json());
 
 // ============================================
@@ -49,12 +74,44 @@ if (isReplit) {
 // ============================================
 // SOCKET.IO SETUP (AUDIO SERVER)
 // ============================================
+
+// const io = new Server(server, {
+//     cors: {
+//         // origin: ["https://campus3d-theta.vercel.app", "http://localhost:5000"],
+//         origin: [
+//             "https://campus3d-theta.vercel.app",
+//             "http://localhost:5173",
+//             "http://localhost:5000"
+//         ],
+//         methods: ["GET", "POST"],
+//         credentials: true
+//     },
+//     transports: ['polling', 'websocket'],
+//     pingTimeout: 60000,
+//     pingInterval: 25000
+// });
+
 const io = new Server(server, {
     cors: {
-        origin: ["https://pioneer-portal-v3.vercel.app", "http://localhost:5000"],
+        origin: (origin, callback) => {
+
+            if (!origin) {
+                return callback(null, true);
+            }
+
+            if (allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                console.log("❌ BLOCKED AUDIO SOCKET ORIGIN:", origin);
+                callback(new Error("Origin not allowed"));
+            }
+
+        },
+
         methods: ["GET", "POST"],
         credentials: true
     },
+
     transports: ['polling', 'websocket'],
     pingTimeout: 60000,
     pingInterval: 25000
@@ -103,7 +160,7 @@ setInterval(() => {
 // ROUTES
 // ============================================
 app.get('/', (req, res) => {
-    res.send("🎧 PIONEER PORTAL V3 AUDIO SERVER IS LIVE!");
+    res.send("🎧 CAMPUS3D V3 AUDIO SERVER IS LIVE!");
 });
 
 app.get('/health', (req, res) => {
